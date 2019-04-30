@@ -1,5 +1,10 @@
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -14,9 +19,9 @@ import javax.swing.event.ChangeListener;
 
 public class Main
 {
-    private JPanel beegPanel = new JPanel(new GridLayout(8,1));
+    private JPanel beegPanel = new JPanel(new GridLayout(12,1));
 
-    public Main() {
+    public Main() throws IOException {
         JFrame frame = new JFrame("Project5");
         frame.setSize(new Dimension(500,800));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
@@ -25,7 +30,6 @@ public class Main
         setUpSlider();
         setUpShowStation();
         
-        JComboBox compareWith = new JComboBox();
         
         frame.add(beegPanel);
         frame.add(custom);
@@ -59,10 +63,28 @@ public class Main
         beegPanel.add(panel1);
         beegPanel.add(panel2);
     }
-    private void setUpShowStation() {
+    private void setUpShowStation() throws IOException {
         JButton showStation = new JButton("Show Station");
         JPanel stations = new JPanel(new GridLayout(1,1));
         stations.add(showStation);
+        MesoEqual maps = new MesoEqual("STID");
+        HashMap<String, Integer> map = maps.calAsciiEqual();
+        ArrayList<String> stidList = new ArrayList<String>();
+            String filename = "Mesonet.txt";
+            BufferedReader br = new BufferedReader(new FileReader(filename));
+            String readLine;
+            readLine = br.readLine();
+            readLine = br.readLine();
+            readLine = br.readLine();
+            readLine = br.readLine();
+            while (readLine != null) {  
+                String newStid = readLine.substring(2, 6);
+                stidList.add(newStid);
+                readLine = br.readLine();
+            }
+            br.close();
+            
+        JComboBox compareWith = new JComboBox();
         
         
         
@@ -71,7 +93,7 @@ public class Main
     
     
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         new Main();
     }
 }
