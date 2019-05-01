@@ -25,7 +25,7 @@ import javax.swing.event.ChangeListener;
 public class Main
 {
     private JPanel beegPanel;
-
+    private JFrame frame;
     private ArrayList<String> stidList;
 
 
@@ -36,16 +36,14 @@ public class Main
 
 
 
-        JFrame frame = new JFrame("Project5");
-        frame.setSize(new Dimension(500,800));
+        frame = new JFrame("Project5");
+        frame.setSize(new Dimension(500,900));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-        frame.setLayout(new GridLayout(1,2));
+        frame.setLayout(new GridBagLayout());
         JPanel custom = new JPanel();
         setUpGUI();
         
         
-        frame.add(beegPanel);
-        frame.add(custom);
         frame.setVisible(true);
     }
     private void setUpGUI() throws IOException { 
@@ -78,20 +76,39 @@ public class Main
         slider.addChangeListener(listener);
         panel2.add(slider);
         
+        JPanel gridPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.anchor = GridBagConstraints.WEST;
+        c.gridx = 0;
+        c.gridy = 10;
+        c.weightx = 0.1;
+        c.insets = new Insets(7,7,7,7);
+        gridPanel.add(slider,c);
+        c.gridx = 1;
+        c.gridy = 0;
+        gridPanel.add(enterText,c);
+        c.gridx = 0;
+        c.gridy = 0;
+        c.weightx = 0.1;
+        gridPanel.add(enterDist, c);
+
         
-        beegPanel.add(panel1);
-        beegPanel.add(panel2);
+        //beegPanel.add(panel1);
+        //beegPanel.add(panel2);
 
         
         // Next half
         JButton showStation = new JButton("Show Station");
-        showStation.setPreferredSize (new Dimension(10, 10));
-        
+       
+
+
         JPanel stations = new JPanel(new GridLayout(1,1));
         JTextArea hammDistBox = new JTextArea(3,12);
+        gridPanel.add(hammDistBox, c);        
+
         JPanel panel3 = new JPanel(new GridLayout(1,2));
         JLabel compareWithButton = new JLabel("Compare With:");
-        
+
 
 
         
@@ -134,13 +151,33 @@ public class Main
         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
 
-        panel3.add(compareWithButton);
-        panel3.add(compareWith);
-        beegPanel.add(showStation);
-        beegPanel.add(scroll);
-        beegPanel.add(panel3);
-        beegPanel.add(stations);
-        
+        //panel3.add(compareWithButton);
+        //panel3.add(compareWith);
+        //beegPanel.add(showStation);
+        //beegPanel.add(scroll);
+        //beegPanel.add(panel3);
+        //beegPanel.add(stations);
+        c.gridx = 0;
+        c.gridy =15;
+        c.weightx = 0.1;
+        gridPanel.add(showStation, c); 
+        c.gridx = 0;
+        c.gridy =20;
+        c.ipady = 150;
+        c.ipadx = 70;
+        c.weightx = 0.1;
+        gridPanel.add(scroll, c);
+        c.ipady = 0;
+        c.ipadx = 0;
+        c.gridx = 0;
+        c.gridy = 25;
+        c.weightx = 0.1;
+        gridPanel.add(compareWithButton, c);
+        c.gridx = 1;
+        c.gridy =25;
+        c.weightx = 0.1;
+        gridPanel.add(compareWith, c);
+
         //Next section
         JButton calcHD = new JButton("Calculate HD");
         JPanel panel4 = new JPanel(new GridLayout(1,2));
@@ -172,7 +209,7 @@ public class Main
             dist3Text.setText(distances.get(3).toString());
             dist4Text.setText(distances.get(4).toString());
         });
-        panel4.add(dist0);
+        /*panel4.add(dist0);
         panel4.add(dist0Text);
         panel4.add(dist1);
         panel4.add(dist1Text);
@@ -183,8 +220,52 @@ public class Main
         panel4.add(dist4);
         panel4.add(dist4Text);
         beegPanel.add(calcHD);
-        beegPanel.add(panel4);
-        
+        beegPanel.add(panel4); */
+        c.gridx = 0;
+        c.gridy =30;
+        c.weightx = 0.1;
+        gridPanel.add(calcHD, c);
+        c.gridx = 0;
+        c.gridy =35;
+        c.weightx = 0.1;
+        gridPanel.add(dist0, c);
+        c.gridx = 1;
+        c.gridy =35;
+        c.weightx = 0.1;
+        gridPanel.add(dist0Text, c);
+        c.gridx = 0;
+        c.gridy =40;
+        c.weightx = 0.1;
+        gridPanel.add(dist1, c);
+        c.gridx = 1;
+        c.gridy =40;
+        c.weightx = 0.1;
+        gridPanel.add(dist1Text, c);
+        c.gridx = 0;
+        c.gridy =45;
+        c.weightx = 0.1;
+        gridPanel.add(dist2, c);
+        c.gridx = 1;
+        c.gridy =45;
+        c.weightx = 0.1;
+        gridPanel.add(dist2Text, c);
+        c.gridx = 0;
+        c.gridy =50;
+        c.weightx = 0.1;
+        gridPanel.add(dist3, c);
+        c.gridx = 1;
+        c.gridy =50;
+        c.weightx = 0.1;
+        gridPanel.add(dist3Text, c);
+        c.gridx = 0;
+        c.gridy =55;
+        c.weightx = 0.1;
+        gridPanel.add(dist4, c);
+        c.gridx = 1;
+        c.gridy =55;
+        c.weightx = 0.1;
+        gridPanel.add(dist4Text, c);
+
         //Next
         JButton addStation = new JButton("Add station");
         JTextField addedStation = new JTextField(10);
@@ -201,13 +282,24 @@ public class Main
             }
             
         });
-        JPanel panel5 = new JPanel(new GridLayout(2,2));
+        /*JPanel panel5 = new JPanel(new GridLayout(2,2));
         panel5.add(addStation);
         panel5.add(addedStation);
-        beegPanel.add(panel5);
-        
+        beegPanel.add(panel5); */
+        c.gridx = 0;
+        c.gridy =60;
+        c.weightx = 0.1;
+        gridPanel.add(addStation, c);
+        c.gridx = 1;
+        c.gridy =60;
+        c.weightx = 0.1;
+        gridPanel.add(addedStation, c);
         //Creative part
-        
+        GridBagConstraints c1 = new GridBagConstraints();
+        c1.weighty = 0.5;
+        c1.weightx = 0.5;
+        c1.anchor = GridBagConstraints.NORTHWEST;
+        frame.add(gridPanel,c1);
     }
     
     
