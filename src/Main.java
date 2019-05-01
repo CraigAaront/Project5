@@ -36,15 +36,14 @@ public class Main
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         frame.setLayout(new GridLayout(1,1));
         JPanel custom = new JPanel();
-        setUpSlider();
-        setUpShowStation();
+        setUpGUI();
         
         
         frame.add(beegPanel);
         frame.add(custom);
         frame.setVisible(true);
     }
-    private void setUpSlider() { 
+    private void setUpGUI() throws IOException { 
         JPanel panel1 = new JPanel(new GridLayout(1,2));   
         JPanel panel2 = new JPanel();
         
@@ -75,14 +74,12 @@ public class Main
         
         beegPanel.add(panel1);
         beegPanel.add(panel2);
-    }
-    private void setUpShowStation() throws IOException {
+
         JButton showStation = new JButton("Show Station");
         JPanel stations = new JPanel(new GridLayout(1,1));
         stations.add(showStation);
         
-        MesoEqual maps = new MesoEqual("STID");
-        HashMap<String, Integer> map = maps.calAsciiEqual();
+
         
         String filename = "Mesonet.txt";
         BufferedReader br = new BufferedReader(new FileReader(filename));
@@ -94,13 +91,17 @@ public class Main
             readLine = br.readLine();
         }
         br.close();
+       
         String[] array = stidList.toArray(new String[stidList.size()]);
-        JComboBox compareWith = new JComboBox(array);
+        JComboBox compareWith = new JComboBox(array);  
         stations.add(compareWith);
         
-        
-        
-        
+        MesoEqual hammDist = new MesoEqual(compareWith.getName());
+        ArrayList<String> resultBox = new ArrayList<String>();
+        if (enterText.getText().equals("1")) {
+           hammDist.hammingDistAll("1", stidList);
+        }
+
         beegPanel.add(stations);
     }
     
