@@ -25,6 +25,7 @@ import javax.swing.event.ChangeListener;
 public class Main
 {
     private JPanel beegPanel;
+
     private ArrayList<String> stidList;
 
 
@@ -33,10 +34,12 @@ public class Main
         stidList = new ArrayList<String>();
         beegPanel = new JPanel(new GridLayout(10,1));
 
+
+
         JFrame frame = new JFrame("Project5");
         frame.setSize(new Dimension(500,800));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-        frame.setLayout(new GridLayout(1,1));
+        frame.setLayout(new GridLayout(1,2));
         JPanel custom = new JPanel();
         setUpGUI();
         
@@ -46,6 +49,7 @@ public class Main
         frame.setVisible(true);
     }
     private void setUpGUI() throws IOException { 
+        
         JPanel panel1 = new JPanel(new GridLayout(1,2));   
         JPanel panel2 = new JPanel();
         
@@ -74,12 +78,15 @@ public class Main
         slider.addChangeListener(listener);
         panel2.add(slider);
         
+        
         beegPanel.add(panel1);
         beegPanel.add(panel2);
 
         
         // Next half
         JButton showStation = new JButton("Show Station");
+        showStation.setPreferredSize (new Dimension(10, 10));
+        
         JPanel stations = new JPanel(new GridLayout(1,1));
         JTextArea hammDistBox = new JTextArea(3,12);
         JPanel panel3 = new JPanel(new GridLayout(1,2));
@@ -125,6 +132,7 @@ public class Main
         JScrollPane scroll = new JScrollPane (hammDistBox);
         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
 
         panel3.add(compareWithButton);
         panel3.add(compareWith);
