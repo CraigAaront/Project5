@@ -31,7 +31,7 @@ public class Main
     public Main() throws IOException {
      
         stidList = new ArrayList<String>();
-        beegPanel = new JPanel(new GridLayout(7,1));
+        beegPanel = new JPanel(new GridLayout(10,1));
 
         JFrame frame = new JFrame("Project5");
         frame.setSize(new Dimension(500,800));
@@ -103,7 +103,6 @@ public class Main
        
 
         showStation.addActionListener((e) -> {
-            String text = "";
             MesoEqual hammDist = new MesoEqual((String)compareWith.getSelectedItem());
             ArrayList<String> resultBox = new ArrayList<String>();
             if (enterText.getText().equals("1")) {
@@ -136,6 +135,9 @@ public class Main
         
         //Next section
         JButton calcHD = new JButton("Calculate HD");
+        JPanel panel4 = new JPanel(new GridLayout(1,2));
+
+        
         JLabel dist0 = new JLabel("Distance 0");
         JLabel dist1 = new JLabel("Distance 1");
         JLabel dist2 = new JLabel("Distance 2");
@@ -151,6 +153,33 @@ public class Main
         dist3Text.setEditable(false);
         JTextField dist4Text = new JTextField(10);
         dist4Text.setEditable(false);
+     
+        calcHD.addActionListener((e) -> {
+            MesoEqual hammDist = new MesoEqual((String)compareWith.getSelectedItem());
+            ArrayList<Integer> distances = new ArrayList<Integer>();
+            distances = hammDist.hammingDistAllNum(stidList);
+            dist0Text.setText(distances.get(0).toString());
+            dist1Text.setText(distances.get(1).toString());
+            dist2Text.setText(distances.get(2).toString());
+            dist3Text.setText(distances.get(3).toString());
+            dist4Text.setText(distances.get(4).toString());
+        });
+        panel4.add(dist0);
+        panel4.add(dist0Text);
+        panel4.add(dist1);
+        panel4.add(dist1Text);
+        panel4.add(dist2);
+        panel4.add(dist2Text);
+        panel4.add(dist3);
+        panel4.add(dist3Text);
+        panel4.add(dist4);
+        panel4.add(dist4Text);
+        beegPanel.add(calcHD);
+        beegPanel.add(panel4);
+        
+        //Last one
+        JLabel addStation = new JLabel("Add station");
+
     }
     
     
