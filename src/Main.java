@@ -1,5 +1,8 @@
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -19,9 +22,15 @@ import javax.swing.event.ChangeListener;
 
 public class Main
 {
-    private JPanel beegPanel = new JPanel(new GridLayout(12,1));
+    private JPanel beegPanel;
+    private ArrayList<String> stidList;
+
 
     public Main() throws IOException {
+     
+        stidList = new ArrayList<String>();
+        beegPanel = new JPanel(new GridLayout(12,1));
+
         JFrame frame = new JFrame("Project5");
         frame.setSize(new Dimension(500,800));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
@@ -35,9 +44,10 @@ public class Main
         frame.add(custom);
         frame.setVisible(true);
     }
-    private void setUpSlider() {
+    private void setUpSlider() { 
         JPanel panel1 = new JPanel(new GridLayout(1,2));   
         JPanel panel2 = new JPanel();
+        
         JSlider slider = new JSlider();
         slider.setMinimum(1);
         slider.setMaximum(4);
@@ -45,9 +55,11 @@ public class Main
         slider.setSnapToTicks(true);
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
+        
         JLabel enterDist = new JLabel("Enter Hamming Dist:");
         JTextField enterText = new JTextField(10);
         enterText.setEditable(false);
+        
         panel1.add(enterDist);
         panel1.add(enterText);
         ChangeListener listener = new ChangeListener()
@@ -60,6 +72,7 @@ public class Main
         };
         slider.addChangeListener(listener);
         panel2.add(slider);
+        
         beegPanel.add(panel1);
         beegPanel.add(panel2);
     }
@@ -67,24 +80,24 @@ public class Main
         JButton showStation = new JButton("Show Station");
         JPanel stations = new JPanel(new GridLayout(1,1));
         stations.add(showStation);
+        
         MesoEqual maps = new MesoEqual("STID");
         HashMap<String, Integer> map = maps.calAsciiEqual();
-        ArrayList<String> stidList = new ArrayList<String>();
-            String filename = "Mesonet.txt";
-            BufferedReader br = new BufferedReader(new FileReader(filename));
-            String readLine;
+        
+        String filename = "Mesonet.txt";
+        BufferedReader br = new BufferedReader(new FileReader(filename));
+        String readLine;
+        readLine = br.readLine();
+        while (readLine != null) {  
+        String newStid = readLine.substring(0, 4);
+            stidList.add(newStid);
             readLine = br.readLine();
-            readLine = br.readLine();
-            readLine = br.readLine();
-            readLine = br.readLine();
-            while (readLine != null) {  
-                String newStid = readLine.substring(2, 6);
-                stidList.add(newStid);
-                readLine = br.readLine();
-            }
-            br.close();
-            
-        JComboBox compareWith = new JComboBox();
+        }
+        br.close();
+        String[] array = stidList.toArray(new String[stidList.size()]);
+        JComboBox compareWith = new JComboBox(array);
+        stations.add(compareWith);
+        
         
         
         

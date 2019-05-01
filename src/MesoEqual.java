@@ -32,11 +32,8 @@ public class MesoEqual {
         BufferedReader br = new BufferedReader(new FileReader(filename));
         String readLine;
         readLine = br.readLine();
-        readLine = br.readLine();
-        readLine = br.readLine();
-        readLine = br.readLine();
         while (readLine != null) {  
-            String newStid = readLine.substring(2, 6);
+            String newStid = readLine.substring(0, 4);
             int avg = new MesoAscii((newStid)).calAverage();
             if (avg == asciiAvg) {
                 map.put(newStid, avg);
