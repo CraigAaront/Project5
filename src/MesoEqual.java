@@ -46,7 +46,6 @@ public class MesoEqual {
         return map;
     }
     public ArrayList<String> hammingDistAll(String num, ArrayList<String> stidList) {
-        ArrayList<Integer> hammingDist = new ArrayList<Integer>();
         ArrayList<String> oneDistance = new ArrayList<String>();
         ArrayList<String> twoDistance = new ArrayList<String>();
         ArrayList<String> threeDistance = new ArrayList<String>();

@@ -14,7 +14,9 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSlider;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -29,7 +31,7 @@ public class Main
     public Main() throws IOException {
      
         stidList = new ArrayList<String>();
-        beegPanel = new JPanel(new GridLayout(12,1));
+        beegPanel = new JPanel(new GridLayout(7,1));
 
         JFrame frame = new JFrame("Project5");
         frame.setSize(new Dimension(500,800));
@@ -75,10 +77,11 @@ public class Main
         beegPanel.add(panel1);
         beegPanel.add(panel2);
 
+        
+        // Next half
         JButton showStation = new JButton("Show Station");
         JPanel stations = new JPanel(new GridLayout(1,1));
-        stations.add(showStation);
-        
+        JTextArea hammDistBox = new JTextArea(3,12);
 
         
         String filename = "Mesonet.txt";
@@ -91,17 +94,38 @@ public class Main
             readLine = br.readLine();
         }
         br.close();
-       
         String[] array = stidList.toArray(new String[stidList.size()]);
-        JComboBox compareWith = new JComboBox(array);  
-        stations.add(compareWith);
-        
-        MesoEqual hammDist = new MesoEqual(compareWith.getName());
-        ArrayList<String> resultBox = new ArrayList<String>();
-        if (enterText.getText().equals("1")) {
-           hammDist.hammingDistAll("1", stidList);
-        }
+        JComboBox compareWith = new JComboBox(array); 
+       
 
+        showStation.addActionListener((e) -> {
+            String text = "";
+            MesoEqual hammDist = new MesoEqual((String)compareWith.getSelectedItem());
+            ArrayList<String> resultBox = new ArrayList<String>();
+            if (enterText.getText().equals("1")) {
+                resultBox = hammDist.hammingDistAll("1", stidList);
+            }
+            else if (enterText.getText().equals("2")) {
+                resultBox = hammDist.hammingDistAll("2", stidList);
+            }
+            else if (enterText.getText().equals("3")) {
+                resultBox = hammDist.hammingDistAll("3", stidList);
+            }
+            else {
+                resultBox = hammDist.hammingDistAll("4", stidList);
+            }
+            hammDistBox.setText(null);
+            for(String a : resultBox){
+                hammDistBox.append(a + "\n");
+             }
+        });
+        JScrollPane scroll = new JScrollPane (hammDistBox);
+        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
+        beegPanel.add(showStation);
+        beegPanel.add(scroll);
+        stations.add(compareWith);
         beegPanel.add(stations);
     }
     
