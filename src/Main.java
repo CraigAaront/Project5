@@ -99,7 +99,7 @@ public class Main
         }
         br.close();
         String[] array = stidList.toArray(new String[stidList.size()]);
-        JComboBox compareWith = new JComboBox(array); 
+        JComboBox<String> compareWith = new JComboBox(array); 
        
 
         showStation.addActionListener((e) -> {
@@ -178,8 +178,15 @@ public class Main
         beegPanel.add(panel4);
         
         //Last one
-        JLabel addStation = new JLabel("Add station");
-
+        JButton addStation = new JButton("Add station");
+        JTextField addedStation = new JTextField(10);
+        addStation.addActionListener((e) -> {
+            compareWith.addItem((addedStation.getText()));
+        });
+        JPanel panel5 = new JPanel(new GridLayout(2,1));
+        panel5.add(addStation);
+        panel5.add(addedStation);
+        beegPanel.add(panel5);
     }
     
     
