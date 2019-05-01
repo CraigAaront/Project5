@@ -177,16 +177,29 @@ public class Main
         beegPanel.add(calcHD);
         beegPanel.add(panel4);
         
-        //Last one
+        //Next
         JButton addStation = new JButton("Add station");
         JTextField addedStation = new JTextField(10);
         addStation.addActionListener((e) -> {
-            compareWith.addItem((addedStation.getText()));
+            boolean toAdd = true;
+            for(String stid : stidList){
+                if (addedStation.getText().equals(stid)) {
+                    toAdd = false;
+                }
+             }
+            if (toAdd == true) {
+                stidList.add(addedStation.getText());
+                compareWith.addItem((addedStation.getText())); 
+            }
+            
         });
-        JPanel panel5 = new JPanel(new GridLayout(2,1));
+        JPanel panel5 = new JPanel(new GridLayout(2,2));
         panel5.add(addStation);
         panel5.add(addedStation);
         beegPanel.add(panel5);
+        
+        //Creative part
+        
     }
     
     
