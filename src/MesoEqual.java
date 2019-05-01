@@ -85,4 +85,43 @@ public class MesoEqual {
             return fourDistance;
         }
     }
+    public ArrayList<Integer> hammingDistAllNum(ArrayList<String> stidList) {
+        ArrayList<Integer> hammingDist = new ArrayList<Integer>();
+        int zeroDistance = 0;
+        int oneDistance = 0;
+        int twoDistance = 0;
+        int threeDistance = 0;
+        int fourDistance = 0;
+        String[] stringLetters = STID.split("");
+        for (int i = 0; i < stidList.size(); i++) {
+            int hammingCounter = 0;
+            String[] stidLetters = stidList.get(i).split("");
+            for(int j = 0; j < stringLetters.length; j++) {
+                if(!stringLetters[j].equalsIgnoreCase(stidLetters[j])){
+                    hammingCounter += 1;
+                }
+            }
+            if (hammingCounter == 0) {
+                zeroDistance++;
+            }
+            else if (hammingCounter == 1) {
+                oneDistance++;
+            }
+            else if (hammingCounter == 2) {
+                twoDistance++;
+            }
+            else if (hammingCounter == 3) {
+                threeDistance++;
+            }
+            else if (hammingCounter == 4){
+                fourDistance++;
+            }
+        }
+        hammingDist.add(zeroDistance);
+        hammingDist.add(oneDistance);
+        hammingDist.add(twoDistance);
+        hammingDist.add(threeDistance);
+        hammingDist.add(fourDistance);
+        return hammingDist;
+    }
 }

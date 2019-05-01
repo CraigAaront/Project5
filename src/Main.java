@@ -82,6 +82,10 @@ public class Main
         JButton showStation = new JButton("Show Station");
         JPanel stations = new JPanel(new GridLayout(1,1));
         JTextArea hammDistBox = new JTextArea(3,12);
+        JPanel panel3 = new JPanel(new GridLayout(1,2));
+        JLabel compareWithButton = new JLabel("Compare With:");
+        
+
 
         
         String filename = "Mesonet.txt";
@@ -123,10 +127,30 @@ public class Main
         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
+        panel3.add(compareWithButton);
+        panel3.add(compareWith);
         beegPanel.add(showStation);
         beegPanel.add(scroll);
-        stations.add(compareWith);
+        beegPanel.add(panel3);
         beegPanel.add(stations);
+        
+        //Next section
+        JButton calcHD = new JButton("Calculate HD");
+        JLabel dist0 = new JLabel("Distance 0");
+        JLabel dist1 = new JLabel("Distance 1");
+        JLabel dist2 = new JLabel("Distance 2");
+        JLabel dist3 = new JLabel("Distance 3");
+        JLabel dist4 = new JLabel("Distance 4");
+        JTextField dist0Text = new JTextField(10);
+        dist0Text.setEditable(false);
+        JTextField dist1Text = new JTextField(10);
+        dist1Text.setEditable(false);
+        JTextField dist2Text = new JTextField(10);
+        dist2Text.setEditable(false);
+        JTextField dist3Text = new JTextField(10);
+        dist3Text.setEditable(false);
+        JTextField dist4Text = new JTextField(10);
+        dist4Text.setEditable(false);
     }
     
     
