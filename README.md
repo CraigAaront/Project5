@@ -36,7 +36,13 @@ would need to be done for GUI, what calculations would need to be made, and how 
       - jButton "add station" created
           - actionlistener added that adds the typed string into the combobox
       - jTextfield created that allows you to type a string thats added to the combobox
-2. MesoAbstract class:
-    - Has abstract methods used  by inherit
+      
+2. MesoAscii Class:
+    - calculates the asciiAverage between two strings
+3. MesoEqual Class:
+    - calAsciiEqual method returns an arraylist of strings that have the same asciiAverage as a given string
+    - hammingDistAll method returns an arraylist of strings that depends on the hamming distance selected
+    - hammingDistAllNum method returns an arraylist of integers that hold the number of stations with a hamming distance of
+        0, 1, 2, 3, and 4
   
 
