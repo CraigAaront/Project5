@@ -187,14 +187,18 @@ public class Main
         c.weightx = 0.1;
         gridPanel.add(compareWith, c);
 
-        //Next section
+        //Third section
+        //Creates calculate HD button
         JButton calcHD = new JButton("Calculate HD");
    
+        //Creates 5 labels for the 0-4 hamming distances
         JLabel dist0 = new JLabel("Distance 0");
         JLabel dist1 = new JLabel("Distance 1");
         JLabel dist2 = new JLabel("Distance 2");
         JLabel dist3 = new JLabel("Distance 3");
         JLabel dist4 = new JLabel("Distance 4");
+        
+        //Creates 5 textfields corresponding to the labels that are uneditable
         JTextField dist0Text = new JTextField(10);
         dist0Text.setEditable(false);
         JTextField dist1Text = new JTextField(10);
