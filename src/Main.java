@@ -24,7 +24,6 @@ import javax.swing.event.ChangeListener;
 
 public class Main
 {
-    private JPanel beegPanel;
     private JFrame frame;
     private ArrayList<String> stidList;
 
@@ -32,9 +31,6 @@ public class Main
     public Main() throws IOException {
      
         stidList = new ArrayList<String>();
-        beegPanel = new JPanel(new GridLayout(10,1));
-
-
 
         frame = new JFrame("Project5");
         frame.setSize(new Dimension(600,700));
@@ -82,7 +78,7 @@ public class Main
         c.gridx = 0;
         c.gridy = 10;
         c.weightx = 0.1;
-        c.insets = new Insets(7,7,7,7);
+        c.insets = new Insets(5,5,5,5);
         gridPanel.add(slider,c);
         c.gridx = 1;
         c.gridy = 0;
@@ -102,16 +98,13 @@ public class Main
        
 
 
-        JPanel stations = new JPanel(new GridLayout(1,1));
+       // JPanel stations = new JPanel(new GridLayout(1,1));
         JTextArea hammDistBox = new JTextArea(3,12);
-        gridPanel.add(hammDistBox, c);        
+        //gridPanel.add(hammDistBox, c);        
 
-        JPanel panel3 = new JPanel(new GridLayout(1,2));
+        //JPanel panel3 = new JPanel(new GridLayout(1,2));
         JLabel compareWithButton = new JLabel("Compare With:");
-
-
-
-        
+       
         String filename = "Mesonet.txt";
         BufferedReader br = new BufferedReader(new FileReader(filename));
         String readLine;
@@ -122,10 +115,10 @@ public class Main
             readLine = br.readLine();
         }
         br.close();
+        
         String[] array = stidList.toArray(new String[stidList.size()]);
         JComboBox<String> compareWith = new JComboBox(array); 
        
-
         showStation.addActionListener((e) -> {
             MesoEqual hammDist = new MesoEqual((String)compareWith.getSelectedItem());
             ArrayList<String> resultBox = new ArrayList<String>();
@@ -180,7 +173,7 @@ public class Main
 
         //Next section
         JButton calcHD = new JButton("Calculate HD");
-        JPanel panel4 = new JPanel(new GridLayout(1,2));
+        //JPanel panel4 = new JPanel(new GridLayout(1,2));
 
         
         JLabel dist0 = new JLabel("Distance 0");
@@ -298,17 +291,53 @@ public class Main
         //Creative part
         JButton asciiAvg = new JButton("Calculate ASCII average:");
         JTextField asciiText = new JTextField(10);
+        JTextArea asciiBox = new JTextArea(3,12);
+        asciiText.setEditable(false);
+        JLabel sameAvg = new JLabel("Stations with same average:");
+        JPanel gridPanel2 = new JPanel(new GridBagLayout());
+        c.anchor = GridBagConstraints.EAST;
+        
+
         asciiAvg.addActionListener((e) -> {
-            
+            MesoEqual asciiAvID = new MesoEqual((String)compareWith.getSelectedItem());
+            MesoAscii asciiAv = new MesoAscii((String)compareWith.getSelectedItem());
+            int avg = asciiAv.calAverage();
+            asciiText.setText("" + avg);
+            ArrayList<String> resultAvg;
+            try
+            {
+                resultAvg = asciiAvID.calAsciiEqual(stidList);
+                asciiBox.setText(null);
+                for(String a : resultAvg){
+                    asciiBox.append(a + "\n");
+                 }
+            } catch (IOException e1)
+            {
+                e1.printStackTrace();
+            }
         });
-        
-        
-        
-        
+        JScrollPane scroller = new JScrollPane (asciiBox);
+        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+             
         c.gridx = 2;
         c.gridy = 10;
         c.weightx = 0.05;
-        gridPanel.add(asciiAvg, c);
+        gridPanel2.add(asciiAvg, c);
+        c.gridx = 2;
+        c.gridy = 15;
+        c.weightx = 0.05;
+        gridPanel2.add(asciiText, c);
+        c.gridx = 2;
+        c.gridy = 20;
+        c.weightx = 0.05;
+        gridPanel2.add(sameAvg, c);
+        c.gridx = 2;
+        c.gridy = 25;
+        c.weightx = 0.05;
+        c.ipady = 150;
+        c.ipadx = 70;
+        gridPanel2.add(scroller, c);
         
         
         //puts panel in frame
@@ -317,6 +346,8 @@ public class Main
         c1.weightx = 1;
         c1.anchor = GridBagConstraints.NORTHWEST;
         frame.add(gridPanel,c1);
+        c1.anchor = GridBagConstraints.NORTHEAST;
+        frame.add(gridPanel2, c1);
     }
     
     

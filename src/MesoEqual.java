@@ -24,22 +24,15 @@ public class MesoEqual {
      * @return HashMap with the STID and asciiAverage
      * @throws IOException
      */
-    public ArrayList<String> calAsciiEqual() throws IOException {
+    public ArrayList<String> calAsciiEqual(ArrayList<String> stidList) throws IOException {
         int asciiAvg = new MesoAscii(STID).calAverage();
         ArrayList<String> returned = new ArrayList<String>();
-        String filename = "Mesonet.txt";
-        BufferedReader br = new BufferedReader(new FileReader(filename));
-        String readLine;
-        readLine = br.readLine();
-        while (readLine != null) {  
-            String newStid = readLine.substring(0, 4);
-            int avg = new MesoAscii((newStid)).calAverage();
+        for (String stid : stidList) {
+            int avg = new MesoAscii((stid)).calAverage();
             if (avg == asciiAvg) {
-                returned.add(newStid);
+                returned.add(stid);
             }
-            readLine = br.readLine();
         }
-        br.close();
         return returned;
     }
     public ArrayList<String> hammingDistAll(String num, ArrayList<String> stidList) {
