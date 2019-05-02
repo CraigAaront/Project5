@@ -1,27 +1,22 @@
 # Project5
 ![](UML.jpg)
 ## Problem Solving Approach:
-1. After looking at the main and MesoStation classes, I determined what
-would need to be done for the abstract and inherited classes
-    - Inherit class would need to extend the abstract class
-    - Inherit class would only have a constructor and implementation of 
-	the abstract methods
-    - Abstract class would hold abstract methods
-    - Abstract class would have calAverage and letterAverage
-        methods
+1. After looking at the demo, I determined what
+would need to be done for GUI, what calculations would need to be made, and how to set it all up
+    - Main method would only construct the frame
+    - Constructor would make the GUI and implement action listeners
+    - Calculations occur in separate classes
+    - AsciiAverage calculation has its own class
+    - finding hamming distances and stations with the same average has its own class
 
 
 ### Analysis of Implemented Code:
-1. MesoInherit class:
+1. Main Class:
     - Created a private string variable that would hold the String
-        STID
-    - Constructor used a mesostation object as a parameter and
-        assigned the string value (STID) to the declared private string
-        variable
-    - calAverage method returned a 3 value int array with necessary
-        values
-      - for loop summed up the ASCII values of the 4 letters
-                by casting to char and int
+        STIDlist
+    - Constructor constructs the GUI frame
+    - setUpGui creates all the components of the GUI
+      - 
       - average variable then found the average of the 4
                 letters
       - calAverage[0] is the ceil, so math.ceil was used on
