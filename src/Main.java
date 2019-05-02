@@ -90,29 +90,31 @@ public class Main
         GridBagConstraints c = new GridBagConstraints();
         c.anchor = GridBagConstraints.WEST;
         
-        //sets constraints for slider
+        //sets location for slider
         c.gridx = 0;
         c.gridy = 10;
         c.weightx = 0.1;
         c.insets = new Insets(5,5,5,5);
         gridPanel.add(slider,c);
         
-        //sets constraints for textfield
+        //sets location for textfield
         c.gridx = 1;
         c.gridy = 0;
         gridPanel.add(enterText,c);
         
-        //sets constraints for label
+        //sets location for label
         c.gridx = 0;
         c.gridy = 0;
         c.weightx = 0.1;
         gridPanel.add(enterDist, c);
 
-        // Next half
+        //Second section
+        //creates button, text area, and label
         JButton showStation = new JButton("Show Station");
         JTextArea hammDistBox = new JTextArea(3,12);
         JLabel compareWithButton = new JLabel("Compare With:");
        
+        //reads in the text file and assigns the stations to the private arraylist
         String filename = "Mesonet.txt";
         BufferedReader br = new BufferedReader(new FileReader(filename));
         String readLine;
@@ -124,9 +126,13 @@ public class Main
         }
         br.close();
         
+        //makes an array out of the stidlist arraylist
         String[] array = stidList.toArray(new String[stidList.size()]);
+        
+        //creates a combobox based on the array of stid's
         JComboBox<String> compareWith = new JComboBox(array); 
        
+        //adds an actionlistener to the button that changes the textarea when pressed
         showStation.addActionListener((e) -> {
             MesoEqual hammDist = new MesoEqual((String)compareWith.getSelectedItem());
             ArrayList<String> resultBox = new ArrayList<String>();
@@ -147,26 +153,35 @@ public class Main
                 hammDistBox.append(a + "\n");
              }
         });
+        
+        //adds a scroll bar to the textarea
         JScrollPane scroll = new JScrollPane (hammDistBox);
         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
+        //sets the location for the showstation button
         c.gridx = 0;
         c.gridy =15;
         c.weightx = 0.1;
         gridPanel.add(showStation, c); 
+        
+        //sets the location/size for the scrolling textarea
         c.gridx = 0;
         c.gridy =20;
         c.ipady = 150;
         c.ipadx = 70;
         c.weightx = 0.1;
         gridPanel.add(scroll, c);
+        
+        //sets the location for the compareWithButton
         c.ipady = 0;
         c.ipadx = 0;
         c.gridx = 0;
         c.gridy = 25;
         c.weightx = 0.1;
         gridPanel.add(compareWithButton, c);
+        
+        //sets the location with the compareWith combobox
         c.gridx = 1;
         c.gridy =25;
         c.weightx = 0.1;
