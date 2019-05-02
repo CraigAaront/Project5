@@ -1,2 +1,2 @@
 # Project5
-![](UML.png)
+![](UML.jpg)
