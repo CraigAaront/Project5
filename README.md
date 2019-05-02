@@ -16,13 +16,15 @@ would need to be done for GUI, what calculations would need to be made, and how 
         STIDlist
     - Constructor constructs the GUI frame
     - setUpGui creates all the components of the GUI
-      - 
-      - average variable then found the average of the 4
-                letters
-      - calAverage[0] is the ceil, so math.ceil was used on
-                average
-      - calAverae[1] is floor, so math.floor was used on
-                average
+      - uses gridBagLayout for components
+      - jlabel set up for "enter hamming distance"
+      - jTextField set up for the box that shows the distance
+      - jSlider set up with 4 ticks, that only allow whole #'s 1-4
+          - slider value is reflected in jtextfield
+          - actionListener set up with slider linked to text field
+      - jButton set up "show station"
+          - actionlistener set up so that if pressed, it shows all stations within the hammingDistance
+            selected by the slider
       - calAverage[2] is the average, if greater than 0.5 it
                 was ceil, less than 0.5 was floor so math.round was used
     - letterAverage method returned a char value that was the ASCII
