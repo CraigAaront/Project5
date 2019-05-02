@@ -37,7 +37,7 @@ public class Main
 
 
         frame = new JFrame("Project5");
-        frame.setSize(new Dimension(500,900));
+        frame.setSize(new Dimension(600,700));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         frame.setLayout(new GridBagLayout());
         JPanel custom = new JPanel();
@@ -294,10 +294,27 @@ public class Main
         c.gridy =60;
         c.weightx = 0.1;
         gridPanel.add(addedStation, c);
+        
         //Creative part
+        JButton asciiAvg = new JButton("Calculate ASCII average:");
+        JTextField asciiText = new JTextField(10);
+        asciiAvg.addActionListener((e) -> {
+            
+        });
+        
+        
+        
+        
+        c.gridx = 2;
+        c.gridy = 10;
+        c.weightx = 0.05;
+        gridPanel.add(asciiAvg, c);
+        
+        
+        //puts panel in frame
         GridBagConstraints c1 = new GridBagConstraints();
-        c1.weighty = 0.5;
-        c1.weightx = 0.5;
+        c1.weighty = 1;
+        c1.weightx = 1;
         c1.anchor = GridBagConstraints.NORTHWEST;
         frame.add(gridPanel,c1);
     }
