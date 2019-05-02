@@ -21,13 +21,25 @@ import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-
+/**
+ * Main class constructs the GUI and creates it
+ * @author Aaron Craig
+ *
+ */
 public class Main
 {
+    /**
+     * frame is the overall frame
+     * stidList holds the stations in mesonet.txt
+     */
     private JFrame frame;
     private ArrayList<String> stidList;
 
 
+    /**
+     * Constructs the GUI 
+     * @throws IOException
+     */
     public Main() throws IOException {
      
         stidList = new ArrayList<String>();
