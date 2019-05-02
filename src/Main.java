@@ -84,19 +84,25 @@ public class Main
            }
         };
         slider.addChangeListener(listener);
-        panel2.add(slider);
-        
+
+        //Creates a gridbag panel and constraints
         JPanel gridPanel = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.anchor = GridBagConstraints.WEST;
+        
+        //sets constraints for slider
         c.gridx = 0;
         c.gridy = 10;
         c.weightx = 0.1;
         c.insets = new Insets(5,5,5,5);
         gridPanel.add(slider,c);
+        
+        //sets constraints for textfield
         c.gridx = 1;
         c.gridy = 0;
         gridPanel.add(enterText,c);
+        
+        //sets constraints for label
         c.gridx = 0;
         c.gridy = 0;
         c.weightx = 0.1;
