@@ -36,6 +36,11 @@ would need to be done for GUI, what calculations would need to be made, and how 
       - jButton "add station" created
           - actionlistener added that adds the typed string into the combobox
       - jTextfield created that allows you to type a string thats added to the combobox
+      - jButton created that is "calculate asciiAverage"
+          - actionlistener added that calculates the average and displays it in a textfield and stations
+              with matching asciiAverage in the textArea
+      - jTextField created that shows the ascii average
+      - jTextArea created that shows all stations with the same asciiAverage
       
 2. MesoAscii Class:
     - calculates the asciiAverage between two strings
