@@ -60,9 +60,7 @@ public class Main
      */
     private void setUpGUI() throws IOException { 
         
-        JPanel panel1 = new JPanel(new GridLayout(1,2));   
-        JPanel panel2 = new JPanel();
-        
+        //Creates a slider with 4 ticks
         JSlider slider = new JSlider();
         slider.setMinimum(1);
         slider.setMaximum(4);
@@ -71,12 +69,12 @@ public class Main
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
         
+        //Creates a label and textfield that are uneditable
         JLabel enterDist = new JLabel("Enter Hamming Dist:");
         JTextField enterText = new JTextField(10);
         enterText.setEditable(false);
         
-        panel1.add(enterDist);
-        panel1.add(enterText);
+        //Adds a listener to the slider, that changes the textfield based on the slider
         ChangeListener listener = new ChangeListener()
         {
            public void stateChanged(ChangeEvent event)
@@ -332,7 +330,11 @@ public class Main
     }
     
     
-    
+    /**
+     * Constructs the main object
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         new Main();
     }
