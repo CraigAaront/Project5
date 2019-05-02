@@ -54,6 +54,10 @@ public class Main
         
         frame.setVisible(true);
     }
+    /**
+     * Constructs all components of the GUI and adds them to the frame
+     * @throws IOException
+     */
     private void setUpGUI() throws IOException { 
         
         JPanel panel1 = new JPanel(new GridLayout(1,2));   
@@ -100,21 +104,9 @@ public class Main
         c.weightx = 0.1;
         gridPanel.add(enterDist, c);
 
-        
-        //beegPanel.add(panel1);
-        //beegPanel.add(panel2);
-
-        
         // Next half
         JButton showStation = new JButton("Show Station");
-       
-
-
-       // JPanel stations = new JPanel(new GridLayout(1,1));
         JTextArea hammDistBox = new JTextArea(3,12);
-        //gridPanel.add(hammDistBox, c);        
-
-        //JPanel panel3 = new JPanel(new GridLayout(1,2));
         JLabel compareWithButton = new JLabel("Compare With:");
        
         String filename = "Mesonet.txt";
@@ -155,13 +147,6 @@ public class Main
         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
-
-        //panel3.add(compareWithButton);
-        //panel3.add(compareWith);
-        //beegPanel.add(showStation);
-        //beegPanel.add(scroll);
-        //beegPanel.add(panel3);
-        //beegPanel.add(stations);
         c.gridx = 0;
         c.gridy =15;
         c.weightx = 0.1;
@@ -185,9 +170,7 @@ public class Main
 
         //Next section
         JButton calcHD = new JButton("Calculate HD");
-        //JPanel panel4 = new JPanel(new GridLayout(1,2));
-
-        
+   
         JLabel dist0 = new JLabel("Distance 0");
         JLabel dist1 = new JLabel("Distance 1");
         JLabel dist2 = new JLabel("Distance 2");
@@ -214,18 +197,7 @@ public class Main
             dist3Text.setText(distances.get(3).toString());
             dist4Text.setText(distances.get(4).toString());
         });
-        /*panel4.add(dist0);
-        panel4.add(dist0Text);
-        panel4.add(dist1);
-        panel4.add(dist1Text);
-        panel4.add(dist2);
-        panel4.add(dist2Text);
-        panel4.add(dist3);
-        panel4.add(dist3Text);
-        panel4.add(dist4);
-        panel4.add(dist4Text);
-        beegPanel.add(calcHD);
-        beegPanel.add(panel4); */
+
         c.gridx = 0;
         c.gridy =30;
         c.weightx = 0.1;
@@ -287,10 +259,7 @@ public class Main
             }
             
         });
-        /*JPanel panel5 = new JPanel(new GridLayout(2,2));
-        panel5.add(addStation);
-        panel5.add(addedStation);
-        beegPanel.add(panel5); */
+
         c.gridx = 0;
         c.gridy =60;
         c.weightx = 0.1;
