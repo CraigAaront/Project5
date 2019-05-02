@@ -24,13 +24,12 @@ would need to be done for GUI, what calculations would need to be made, and how 
           - actionListener set up with slider linked to text field
       - jButton set up "show station"
           - actionlistener set up so that if pressed, it shows all stations within the hammingDistance
-            selected by the slider
-      - calAverage[2] is the average, if greater than 0.5 it
-                was ceil, less than 0.5 was floor so math.round was used
-    - letterAverage method returned a char value that was the ASCII
-        equivalent int value
-      - used same sum and average variables and for loop to
-                find the ASCII total as in calAverage
+            selected by the slider in the text area
+      - jTextArea created that shows all strings that are within the specified hamming distance
+      - jLabel created that says "compare with:"
+      - jComboBox created that shows all the STID values
+      - Jbutton created that calculates the hamming distance between the selected STID in the combobox and the Mesonet.txt
+          - actionListener added to change later text fields
       - used math.round to find the average
       - the int value was then casted to char to find the
                 ASCII equivalent
