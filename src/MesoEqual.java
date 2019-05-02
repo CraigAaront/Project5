@@ -19,9 +19,9 @@ public class MesoEqual {
     }
     
     /**
-     * reads mesonent.txt, parses the STID and calculates the asciiAverage of all stations
-     * if the asciiAverage is the same as the given STID average, then it is added to the hashmap and returned
-     * @return HashMap with the STID and asciiAverage
+     * Takes in an arraylist of ID's and calculates the asciiAverage of all of them; if they have the same average
+     * as the given string, then the string is assigned to an arraylist that is returned
+     * @return arraylist of strings that hold all stations with same average
      * @throws IOException
      */
     public ArrayList<String> calAsciiEqual(ArrayList<String> stidList) throws IOException {
@@ -35,6 +35,14 @@ public class MesoEqual {
         }
         return returned;
     }
+    
+    /**
+     * Calculates the hamming distance between a given arraylist strings and a given string
+     * returns the arraylist based on if the given num is 1,2,3,or 4
+     * @param num: given number value as a string
+     * @param stidList: given list of STID's
+     * @returns an arraylist of strings
+     */
     public ArrayList<String> hammingDistAll(String num, ArrayList<String> stidList) {
         ArrayList<String> oneDistance = new ArrayList<String>();
         ArrayList<String> twoDistance = new ArrayList<String>();
