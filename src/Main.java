@@ -210,6 +210,7 @@ public class Main
         JTextField dist4Text = new JTextField(10);
         dist4Text.setEditable(false);
      
+        //Actionlistener sets the textfield based on the combobox
         calcHD.addActionListener((e) -> {
             MesoEqual hammDist = new MesoEqual((String)compareWith.getSelectedItem());
             ArrayList<Integer> distances = new ArrayList<Integer>();
@@ -221,6 +222,7 @@ public class Main
             dist4Text.setText(distances.get(4).toString());
         });
 
+        //sets the locations of all the labels and textFields
         c.gridx = 0;
         c.gridy =30;
         c.weightx = 0.1;
@@ -266,9 +268,14 @@ public class Main
         c.weightx = 0.1;
         gridPanel.add(dist4Text, c);
 
-        //Next
+        //Fourth section 
+        //Creates button that says "add station"
         JButton addStation = new JButton("Add station");
+        
+        //creates textfield that is for the added station
         JTextField addedStation = new JTextField(10);
+        
+        //actionlistener adds the text in the textfield into the combobox
         addStation.addActionListener((e) -> {
             boolean toAdd = true;
             for(String stid : stidList){
@@ -283,25 +290,38 @@ public class Main
             
         });
 
+        //sets the location of the addstation button
         c.gridx = 0;
         c.gridy =60;
         c.weightx = 0.1;
         gridPanel.add(addStation, c);
+        
+        //sets the location of addedstation textfield
         c.gridx = 1;
         c.gridy =60;
         c.weightx = 0.1;
         gridPanel.add(addedStation, c);
         
         //Creative part
+        //Creates button that calculates ascii average of chosen station
         JButton asciiAvg = new JButton("Calculate ASCII average:");
+        
+        //Creates extfield created (uneditable) that shows the average
         JTextField asciiText = new JTextField(10);
+        
+        //Creates textarea that shows all stations with the same asciiAverage
         JTextArea asciiBox = new JTextArea(3,12);
         asciiText.setEditable(false);
+        
+        //Creates label that says "stations with same avg"
         JLabel sameAvg = new JLabel("Stations with same average:");
+        
+        //Creates a new gridpanel that is located in top right of the frame
         JPanel gridPanel2 = new JPanel(new GridBagLayout());
         c.anchor = GridBagConstraints.EAST;
-        
 
+        //Adds an actionlistener to the button that when pressed, it calculates the average and assigns
+        //it to the textbox and adds strings to the text area
         asciiAvg.addActionListener((e) -> {
             MesoEqual asciiAvID = new MesoEqual((String)compareWith.getSelectedItem());
             MesoAscii asciiAv = new MesoAscii((String)compareWith.getSelectedItem());
@@ -320,10 +340,13 @@ public class Main
                 e1.printStackTrace();
             }
         });
+        
+        //Adds scroll bars to the textarea
         JScrollPane scroller = new JScrollPane (asciiBox);
         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-             
+          
+        //Sets locations of all the parts to the new gridpanel
         c.gridx = 2;
         c.gridy = 10;
         c.weightx = 0.05;
