@@ -6,9 +6,7 @@ import java.util.HashMap;
 
 public class MesoEqual {
     
-    // private variables that hold the string value in STID, and map holds the stations with the 
-    // same ascii average
-    private HashMap<String, Integer> map;
+
     private String STID;
 
 
@@ -18,7 +16,6 @@ public class MesoEqual {
      */
     public MesoEqual(String Stid) {
         this.STID = Stid;
-        this.map = new HashMap<String, Integer>();
     }
     
     /**
@@ -27,9 +24,9 @@ public class MesoEqual {
      * @return HashMap with the STID and asciiAverage
      * @throws IOException
      */
-    public HashMap<String, Integer> calAsciiEqual() throws IOException {
+    public ArrayList<String> calAsciiEqual() throws IOException {
         int asciiAvg = new MesoAscii(STID).calAverage();
-        
+        ArrayList<String> returned = new ArrayList<String>();
         String filename = "Mesonet.txt";
         BufferedReader br = new BufferedReader(new FileReader(filename));
         String readLine;
@@ -38,12 +35,12 @@ public class MesoEqual {
             String newStid = readLine.substring(0, 4);
             int avg = new MesoAscii((newStid)).calAverage();
             if (avg == asciiAvg) {
-                map.put(newStid, avg);
+                returned.add(newStid);
             }
             readLine = br.readLine();
         }
         br.close();
-        return map;
+        return returned;
     }
     public ArrayList<String> hammingDistAll(String num, ArrayList<String> stidList) {
         ArrayList<String> oneDistance = new ArrayList<String>();
