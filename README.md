@@ -30,10 +30,12 @@ would need to be done for GUI, what calculations would need to be made, and how 
       - jComboBox created that shows all the STID values
       - Jbutton created that calculates the hamming distance between the selected STID in the combobox and the Mesonet.txt
           - actionListener added to change later text fields
-      - used math.round to find the average
-      - the int value was then casted to char to find the
-                ASCII equivalent
-      - returned the char value that was gained by casting
+      - 5 jLabel's created that say "Distance 0-5"
+      - 5 jTextFields created that are uneditable
+          - jbutton with actionlistener changes text fields based on the distances
+      - jButton "add station" created
+          - actionlistener added that adds the typed string into the combobox
+      - jTextfield created that allows you to type a string thats added to the combobox
 2. MesoAbstract class:
     - Has abstract methods used  by inherit
   
