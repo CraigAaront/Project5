@@ -83,6 +83,12 @@ public class MesoEqual {
             return fourDistance;
         }
     }
+    /**
+     * Calculates the hammingDistance and returns an arraylist of 
+     * integers that are the number of stations that are 0,1,2,3,4 hamming distance away
+     * @param stidList: arraylist of Station id's
+     * @returns an arraylist of integers
+     */
     public ArrayList<Integer> hammingDistAllNum(ArrayList<String> stidList) {
         ArrayList<Integer> hammingDist = new ArrayList<Integer>();
         int zeroDistance = 0;
